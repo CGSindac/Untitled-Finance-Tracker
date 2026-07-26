@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Untitled Blogging App</title>
+</head>
+<body>
+    <header>
+        <h1>UNTITLED BLOGGING APP</h1>
+    </header>
+    <main>
+        <div id="blog-container" class="content-container entry-container">
+
+        </div>
+        <div class="content-container form-container">
+            <form action="http://localhost:3000/api/articles" method="post">
+                <div class="form-item">
+                    <label for="title">Blog Title</label>
+                    <br>
+                    <input type="text" name="title" id="title">
+                </div>
+                <div class="form-item">
+                    <label for="entry">Blog Content</label>
+                    <br>
+                    <textarea name="entry" id="entry"></textarea>
+                </div>
+                
+                <button type="submit">Create Blog</button>
+            </form>
+        </div>
+    </main>
+    <script src="script.mjs" type="module"></script>
+</body>
+</html>
