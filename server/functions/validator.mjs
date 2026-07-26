@@ -1,6 +1,10 @@
 const validateEntry = (req, res, next) => {
     const { body } = req;
 
+    if (!body) {
+        return res.status(400).send({ mssg: "Cannot Get Request Body "});
+    }
+
     // Check if all fields has value
     if (!("title" in body && "entry" in body)) {
         return res.send({mssg: "Error Missing Fields"});
