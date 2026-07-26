@@ -1,20 +1,9 @@
 [
     {
         "id": 1,
-        "title": "Sample Journal Title #1",
-        "date": "26-7-2026",
-        "entry": "Lorem Ipsum...."
-    },
-    {
-        "id": 2,
-        "title": "Sample Journal Title #2",
-        "date": "26-7-2026",
-        "entry": "Lorem Ipsum...."
-    },
-    {
-        "id": 3,
-        "title": "Sample Journal Title #4",
-        "date": "26-7-2026",
-        "entry": "Lorem Ipsum..."
+        "date": "2026-07-26",
+        "deleted": false,
+        "title": "new Tiele",
+        "entry": "New Entry Yehey"
     }
 ]

@@ -18,8 +18,10 @@ function UpdateDB(newData){
     try {
         const newJSONData = JSON.stringify(newData, null, 4);
         writeFile(DB, newJSONData, "utf-8");
+        return true;
     } catch (err) { 
         console.log(err);
+        return false;
     }
 }
 
@@ -33,16 +35,26 @@ async function createNewEntry( entryList, newEntry){
         console.log("Missing Fields");
         return false;
     }
+
+    const date = new Date().toISOString().split('T')[0];
         
     try {
+        let newId;
+
+        if (entryList.length === 0) newId = 1;
+        else newId = entryList[entryList.length - 1].id + 1;
+
         newEntry = { 
-        id: entryList[entryList.length - 1].id + 1,
+        id: newId,
+        date : date,
+        deleted : false,
         ...newEntry
         }
 
         return newEntry;
     } catch (err) {
         console.log(err);
+        return null;
     }
     
 }
