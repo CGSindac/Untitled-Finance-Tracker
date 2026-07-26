@@ -2,8 +2,29 @@
     {
         "id": 1,
         "date": "2026-07-26",
-        "deleted": false,
+        "deleted": true,
         "title": "new Tiele",
         "entry": "New Entry Yehey"
+    },
+    {
+        "id": 2,
+        "date": "2026-07-26",
+        "deleted": false,
+        "title": "JS",
+        "entry": "Notified"
+    },
+    {
+        "id": 3,
+        "date": "2026-07-26",
+        "deleted": false,
+        "title": "Happy DAy",
+        "entry": "Amazing OMG"
+    },
+    {
+        "id": 4,
+        "date": "2026-07-26",
+        "deleted": false,
+        "title": "Happy DAy 2",
+        "entry": "Amazing OMG"
     }
 ]
