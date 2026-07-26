@@ -26,5 +26,12 @@
         "deleted": false,
         "title": "Happy DAy 2",
         "entry": "Amazing OMG"
+    },
+    {
+        "id": 5,
+        "date": "2026-07-26",
+        "deleted": false,
+        "title": "New Journal Entry",
+        "entry": "I have Created an API"
     }
 ]
