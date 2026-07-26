@@ -1,7 +1,7 @@
 import { write } from 'fs';
 import { readFile, writeFile } from 'fs/promises'
 
-const DB = "../db.json";
+const DB = "../server/db.json";
 
 async function getJSONData() {
     try {
@@ -46,6 +46,12 @@ async function createNewEntry( entryList, newEntry){
     }
     
 }
+
+export {
+    getJSONData,
+    UpdateDB,
+    createNewEntry
+};
 
 //============================TESTING===============================================//
 
