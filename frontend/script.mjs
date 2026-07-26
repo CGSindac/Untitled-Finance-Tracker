@@ -1,8 +1,7 @@
-import { fetchData } from "../frontend/apiHandler.js";
+import { fetchData, createNewBlog } from "../frontend/apiHandler.js";
 
-// Init Data
+// Get BLogs
 const blogContainer = document.getElementById("blog-container");
-
 
 fetchData().then(entry => {
     entry.forEach(element => {
@@ -19,4 +18,29 @@ fetchData().then(entry => {
         }
     });
 }).catch(err => console.log(err));
+
+// Init Forms
+let blogForms = document.getElementById("blog-form");
+
+blogForms.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(blogForms);
+    const formBody = Object.fromEntries(formData);
+
+    // Check Request Body [Proper Fields]
+    if (!("title" in formBody && "entry" in formBody)) {
+        alert("Incomplete request, re-enter the form");    
+        return;
+    }
+
+    // Make Post Request to API
+    createNewBlog(formBody)
+    .then(res => {
+        alert("Created New Blog!");
+    })
+    .catch(err => {
+        console.log(err)
+    });
+});
 
