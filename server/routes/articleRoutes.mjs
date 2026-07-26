@@ -1,6 +1,9 @@
 import { Router } from "express";
-import { getJSONData } from "../functions/DBHandler.mjs";
+import { createNewEntry, getJSONData, UpdateDB } from "../functions/DBHandler.mjs";
+import { validateEntry } from "../functions/validator.mjs";
 const router = Router();
+
+
 
 // Get All Articles
 router.get('/articles', async (req, res) =>  {
@@ -28,18 +31,71 @@ router.get('/articles/:id', async (req, res) => {
 });
 
 // Create New Article
-router.post('/articles', (req, res) => {
-    res.send("CREATE ARTICLE");
+router.post('/articles', validateEntry, async (req, res) => {
+    const {body} = req;
+
+    console.log(body);
+
+    const data = await getJSONData();
+    const entry = await createNewEntry(data, body);
+
+    if (entry == null) res.sendStatus(400);
+
+    data.push(entry);
+
+    if (UpdateDB(data)) return res.status(201).send(data);
+    else return res.sendStatus(400);
 });
 
 // Update an article
-router.put('/articles/:id', (req, res) => {
-    res.send("UPDATE SPECIFIC ARTICLE");
+router.patch('/articles/:id', validateEntry, async (req, res) => {
+    const { 
+        params : {id},
+        body
+     } = req;
+
+    // Parse & Validate Id
+    const parsedId = parseInt(id);
+    if (isNaN(parsedId)) return res.sendStatus(400);
+
+    // Retrieve Database and find ID by index
+    let data = await getJSONData();
+    const entryIndex = data.findIndex((entry) => entry.id === parsedId);
+
+    // Validate
+    if (entryIndex === -1 ) return res.sendStatus(404);
+
+    // Update
+    data[entryIndex] = { ...data[entryIndex], ...body};
+
+    if (UpdateDB(data)) return res.sendStatus(200);
+    else return res.sendStatus(400);
+
+    
 });
 
 // Delete an article
-router.delete('/articles/:id', (req, res) => {
-    res.send("DELETE SPECIFIC ARTICLE");
+router.delete('/articles/:id', async (req, res) => {
+    const { 
+        params : {id},
+     } = req;
+
+    // Parse & Validate Id
+    const parsedId = parseInt(id);
+    if (isNaN(parsedId)) return res.sendStatus(400);
+
+    // Retrieve Database and find ID by index
+    let data = await getJSONData();
+    const entryIndex = data.findIndex((entry) => entry.id === parsedId);
+
+    // Validate
+    if (entryIndex === -1 ) return res.sendStatus(404);
+
+    // Update
+    data[entryIndex].deleted = true;
+
+    if (UpdateDB(data)) return res.sendStatus(200);
+    else return res.sendStatus(400);
 });
 
 export default router;
