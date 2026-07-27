@@ -17,6 +17,9 @@
         <div class="content-container form-container">
             <form id="blog-form">
                 <div class="form-item">
+                    <h2 id="form-identifier">Create New Blog</h2>
+                </div>
+                <div class="form-item">
                     <label for="title">Blog Title</label>
                     <br>
                     <input type="text" name="title" id="title">
@@ -26,9 +29,13 @@
                     <br>
                     <textarea name="entry" id="entry"></textarea>
                 </div>
-                
+                <input hidden name="blogId" id="blogId" type="number" value="">
                 <button type="submit">Create Blog</button>
             </form>
+            <div class="blog-bttn">
+                <button id="new-blog-bttn">New Blog</button>
+            </div>
+            
         </div>
     </main>
     <script src="script.mjs" type="module"></script>

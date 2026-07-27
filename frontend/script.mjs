@@ -1,28 +1,69 @@
-import { fetchData, createNewBlog } from "../frontend/apiHandler.js";
+import { fetchData, createNewBlog, updateBlog, deleteBlog } from "../frontend/apiHandler.js";
 
-// Get BLogs
+// Variables
+let newBlogBttn = document.getElementById("new-blog-bttn");
+
+let blogForms = document.getElementById("blog-form");
+let formIdentifier = document.getElementById("form-identifier");
+let formControler = new AbortController();
+
+
 const blogContainer = document.getElementById("blog-container");
 
+
+// Initialization
 fetchData().then(entry => {
     entry.forEach(element => {
 
         if (!element.deleted) {
+
+            // Create new element
             const newElement = document.createElement("div");
             newElement.innerHTML= `
             <h2 class="entry-title">${element.title}</h2> 
             <p class="entry-date">Date Created: ${element.date} </p>
             <p class="entry-main"> ${element.entry} </p>
+            <p id="blog-id" hidden>${element.id}</p>
+            <button id="focus-bttn">Check Id</button>
+            <button id="delete-bttn">Delete</button>
             `;
-            newElement.classList.add("entry-content")
+            newElement.classList.add("entry-content");
+
+            let blogId = newElement.querySelector('#blog-id');
+            let focusBttn = newElement.querySelector('#focus-bttn');
+            let deleteBttn = newElement.querySelector('#delete-bttn');
+
+            // Add Update & Delete logic to buttons
+            focusBttn.addEventListener('click', (event) => {
+                initUpdateBlogForm(event, element);
+            });
+
+            deleteBttn.addEventListener('click', (event) => {
+                handleBlogDeletion(blogId.innerHTML);
+            });
+
+            // Add element to page
             blogContainer.appendChild(newElement);
         }
     });
 }).catch(err => console.log(err));
 
-// Init Forms
-let blogForms = document.getElementById("blog-form");
+newBlogBttn.addEventListener('click', initNewBlogForm);
 
-blogForms.addEventListener('submit', (event) => {
+// Event Listeners
+function initNewBlogForm(event) {
+    formControler.abort();
+    formControler = new AbortController();
+    blogForms.addEventListener('submit', handleBlogCreation, { signal : formControler.signal });
+
+    formIdentifier.innerHTML = "Create New Blog";
+    document.getElementById("title").value = "";
+    document.getElementById("entry").innerHTML = "";
+    document.getElementById("blogId").value = "";
+
+    alert("New Blog Mode");
+}
+function handleBlogCreation(event) {
     event.preventDefault();
 
     const formData = new FormData(blogForms);
@@ -30,17 +71,65 @@ blogForms.addEventListener('submit', (event) => {
 
     // Check Request Body [Proper Fields]
     if (!("title" in formBody && "entry" in formBody)) {
-        alert("Incomplete request, re-enter the form");    
+        alert("Incomplete request, re-enter the form");
         return;
     }
 
     // Make Post Request to API
     createNewBlog(formBody)
-    .then(res => {
-        alert("Created New Blog!");
-    })
-    .catch(err => {
-        console.log(err)
-    });
-});
+        .then(res => {
+            alert("Created New Blog!");
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}
+function initUpdateBlogForm(event, blogData) {
 
+    formControler.abort();
+    formControler = new AbortController();
+    blogForms.addEventListener('submit', handleBlogUpdate, { signal : formControler.signal });
+    
+    formIdentifier.innerHTML = "Updating Blog";
+    document.getElementById("title").value = blogData.title || "No Title";
+    document.getElementById("entry").innerHTML = blogData.entry || "No Entry";
+    document.getElementById("blogId").value = blogData.id || "";
+
+}
+
+function handleBlogUpdate(event) {
+    event.preventDefault();
+
+    // Get Form Body
+    const formData = new FormData(blogForms);
+    const formBody = Object.fromEntries(formData);
+
+    console.log(formBody);
+
+    // Check Request Body [Proper Fields]
+    if (!("title" in formBody && "entry" in formBody && "blogId" in formBody)) {
+        alert("Incomplete request, re-enter the form");
+        return;
+    }
+
+    // Update
+    updateBlog(formBody)
+        .then(res => {
+            alert("Updated Blog");
+        })
+        .catch(err => {
+            console.log(err);
+        })
+}
+function handleBlogDeletion(blogId){
+
+    if (blogId === "") return alert("Cannot get blog ID");
+
+    deleteBlog(blogId)
+        .then(res => {
+             alert(`Deleting Blog #${blogId}`);
+        }) 
+        .catch(err => {
+            console.log(err);
+        })
+}
