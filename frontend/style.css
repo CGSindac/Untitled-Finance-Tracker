@@ -47,6 +47,8 @@ main{
     overflow-y: scroll;
     scrollbar-width: thin;
     padding-top: 20px;
+    padding-bottom: 20px;
+    height: 100%;
 
     display: flex;
     gap: 20px;
@@ -84,11 +86,30 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .form-container form {
     display: flex;
     flex-direction: column;
+
+    width: 90%;
+    height: 90%;
+}
+
+.form-item{
+
+    input[type="text"]{
+        width: 100%;
+    }
+
+    textarea{
+        width: 100%;
+        max-height: 500px;
+        resize: vertical;
+        padding: 5px;
+    }
+    
 }
 
 
