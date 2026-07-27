@@ -10,13 +10,14 @@
         "id": 2,
         "date": "2026-07-26",
         "deleted": false,
-        "title": "JS",
-        "entry": "Notified"
+        "title": "JS (Updated)",
+        "entry": "Notified (updated)",
+        "blogId": "2"
     },
     {
         "id": 3,
         "date": "2026-07-26",
-        "deleted": false,
+        "deleted": true,
         "title": "Happy DAy",
         "entry": "Amazing OMG"
     },
@@ -33,5 +34,37 @@
         "deleted": false,
         "title": "New Journal Entry",
         "entry": "I have Created an API"
+    },
+    {
+        "id": 6,
+        "date": "2026-07-27",
+        "deleted": false,
+        "title": "Amazing",
+        "entry": "Truly Amazing",
+        "blogId": ""
+    },
+    {
+        "id": 7,
+        "date": "2026-07-27",
+        "deleted": false,
+        "title": "John",
+        "entry": "Wickest johns",
+        "blogId": ""
+    },
+    {
+        "id": 8,
+        "date": "2026-07-27",
+        "deleted": false,
+        "title": "John Pork",
+        "entry": "Sample Testin te sad",
+        "blogId": ""
+    },
+    {
+        "id": 9,
+        "date": "2026-07-27",
+        "deleted": true,
+        "title": "New Blog Mode",
+        "entry": "Testing for event listener",
+        "blogId": ""
     }
 ]
