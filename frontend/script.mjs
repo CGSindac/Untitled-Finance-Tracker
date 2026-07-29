@@ -20,12 +20,17 @@ fetchData().then(entry => {
             // Create new element
             const newElement = document.createElement("div");
             newElement.innerHTML= `
-            <h2 class="entry-title">${element.title}</h2> 
+            <div class="entry-header">
+                <h2 class="entry-title">${element.title}</h2> 
+                <div>
+                <button id="focus-bttn">Check Id</button>
+                <button id="delete-bttn">Delete</button>
+                </div>
+            </div>
             <p class="entry-date">Date Created: ${element.date} </p>
             <p class="entry-main"> ${element.entry} </p>
             <p id="blog-id" hidden>${element.id}</p>
-            <button id="focus-bttn">Check Id</button>
-            <button id="delete-bttn">Delete</button>
+            
             `;
             newElement.classList.add("entry-content");
 
@@ -96,7 +101,6 @@ function initUpdateBlogForm(event, blogData) {
     document.getElementById("blogId").value = blogData.id || "";
 
 }
-
 function handleBlogUpdate(event) {
     event.preventDefault();
 
