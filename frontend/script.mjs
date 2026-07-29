@@ -13,44 +13,50 @@ const blogContainer = document.getElementById("blog-container");
 
 // Initialization
 fetchData().then(entry => {
-    entry.forEach(element => {
+
+    if (entry) {
+        entry.forEach(element => {
 
         if (!element.deleted) {
 
-            // Create new element
-            const newElement = document.createElement("div");
-            newElement.innerHTML= `
-            <div class="entry-header">
-                <h2 class="entry-title">${element.title}</h2> 
-                <div>
-                <button id="focus-bttn">Check Id</button>
-                <button id="delete-bttn">Delete</button>
+                // Create new element
+                const newElement = document.createElement("div");
+                newElement.innerHTML= `
+                <div class="entry-header">
+                    <h2 class="entry-title">${element.title}</h2> 
+                    <div>
+                    <button id="focus-bttn">Check Id</button>
+                    <button id="delete-bttn">Delete</button>
+                    </div>
                 </div>
-            </div>
-            <p class="entry-date">Date Created: ${element.date} </p>
-            <p class="entry-main"> ${element.entry} </p>
-            <p id="blog-id" hidden>${element.id}</p>
-            
-            `;
-            newElement.classList.add("entry-content");
+                <p class="entry-date">Date Created: ${element.date} </p>
+                <p class="entry-main"> ${element.entry} </p>
+                <p id="blog-id" hidden>${element.id}</p>
+                
+                `;
+                newElement.classList.add("entry-content");
 
-            let blogId = newElement.querySelector('#blog-id');
-            let focusBttn = newElement.querySelector('#focus-bttn');
-            let deleteBttn = newElement.querySelector('#delete-bttn');
+                let blogId = newElement.querySelector('#blog-id');
+                let focusBttn = newElement.querySelector('#focus-bttn');
+                let deleteBttn = newElement.querySelector('#delete-bttn');
 
-            // Add Update & Delete logic to buttons
-            focusBttn.addEventListener('click', (event) => {
-                initUpdateBlogForm(event, element);
-            });
+                // Add Update & Delete logic to buttons
+                focusBttn.addEventListener('click', (event) => {
+                    initUpdateBlogForm(event, element);
+                });
 
-            deleteBttn.addEventListener('click', (event) => {
-                handleBlogDeletion(blogId.innerHTML);
-            });
+                deleteBttn.addEventListener('click', (event) => {
+                    handleBlogDeletion(blogId.innerHTML);
+                });
 
-            // Add element to page
-            blogContainer.appendChild(newElement);
-        }
-    });
+                // Add element to page
+                blogContainer.appendChild(newElement);
+            }
+        });
+    }
+    else {
+        throw new Error();
+    }
 }).catch(err => {
     console.log(err);
 
