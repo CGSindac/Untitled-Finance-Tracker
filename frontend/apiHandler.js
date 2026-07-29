@@ -1,7 +1,19 @@
 
+const credentials = "QWRtaW46QWRtaW4=";
+// This is just the string "Admin:Admin" as Base64
+// This is just like API Tokens
+// Add 'Authorization': `Basic ${credentials}` to headers in the request body to pass it to backend sever
+
 async function fetchData() {
     try {
-        const res = await fetch("http://localhost:3000/api/articles");
+        const res = await fetch("http://localhost:3000/api/articles", 
+            {
+                method : "GET",
+                headers : {
+                    'Authorization': `Basic ${credentials}`
+                }
+            }
+        );
 
         if (!res.ok) {
             throw new Error("Could not Fetch Data");
@@ -14,6 +26,7 @@ async function fetchData() {
 
     } catch (err) {
         console.error(err);
+        return null;
     }
 }
 
@@ -25,7 +38,8 @@ async function createNewBlog(data) {
             {
                 method: 'POST',
                 headers : {
-                    'Content-Type' : 'application/json'
+                    'Content-Type' : 'application/json',
+                    'Authorization': `Basic ${credentials}`
                 },
                 body : JSON.stringify(data)
             }
@@ -50,7 +64,8 @@ async function updateBlog(data) {
             {
                 method: 'PATCH',
                 headers : {
-                    'Content-Type' : 'application/json'
+                    'Content-Type' : 'application/json',
+                    'Authorization': `Basic ${credentials}`
                 },
                 body : JSON.stringify(data)
             }
@@ -73,7 +88,10 @@ async function deleteBlog(blogId) {
     try{
         const res = await fetch(URL, 
             {
-                method: 'DELETE'
+                method: 'DELETE',
+                headers : {
+                    'Authorization': `Basic ${credentials}`
+                }
             }
         )
 
