@@ -46,10 +46,10 @@
     {
         "id": 7,
         "date": "2026-07-27",
-        "deleted": false,
+        "deleted": true,
         "title": "John",
-        "entry": "Wickest johns",
-        "blogId": ""
+        "entry": "Wickest johns Amazing",
+        "blogId": "7"
     },
     {
         "id": 8,

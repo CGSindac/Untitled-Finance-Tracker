@@ -50,7 +50,8 @@ async function createNewBlog(data) {
         }
 
         const result = await res.json();
-        return result;
+
+        return true; // For this project, responses only returns true if succeeded | Currently studying response bodies
     } catch (err) {
         console.log(err);
     }
@@ -76,7 +77,7 @@ async function updateBlog(data) {
         }
 
         const result = await res.json();
-        return result;
+        return true; // For this project, responses only returns true if succeeded | Currently studying response bodies
     } catch (err) {
         console.log(err);
     }
@@ -100,7 +101,7 @@ async function deleteBlog(blogId) {
         }
 
         const result = await res.json();
-        return result;
+        return true; // For this project, responses only returns true if succeeded | Currently studying response bodies
     } catch (err) {
         console.log(err);
     }

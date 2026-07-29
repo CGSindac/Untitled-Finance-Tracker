@@ -51,7 +51,16 @@ fetchData().then(entry => {
             blogContainer.appendChild(newElement);
         }
     });
-}).catch(err => console.log(err));
+}).catch(err => {
+    console.log(err);
+
+    const newElement = document.createElement("div");
+            newElement.innerHTML= `
+            <h1>COULD NOT CONNECT TO SERVER</h1> 
+            `;
+            newElement.classList.add("entry-content");
+            blogContainer.appendChild(newElement);
+});
 initNewBlogForm();
 newBlogBttn.addEventListener('click', initNewBlogForm);
 
@@ -83,7 +92,8 @@ function handleBlogCreation(event) {
     // Make Post Request to API
     createNewBlog(formBody)
         .then(res => {
-            alert("Created New Blog!");
+            if(res) alert("Created New Blog!");
+            else alert("Could Not Connect To Server!");
         })
         .catch(err => {
             console.log(err);
@@ -122,7 +132,8 @@ function handleBlogUpdate(event) {
     // Update
     updateBlog(formBody)
         .then(res => {
-            alert("Updated Blog");
+            if(res) alert("Updated Blog");
+            else alert("Could Not Connect To Server!");
         })
         .catch(err => {
             console.log(err);
@@ -134,7 +145,9 @@ function handleBlogDeletion(blogId){
 
     deleteBlog(blogId)
         .then(res => {
-             alert(`Deleting Blog #${blogId}`);
+             if (res) alert(`Deleting Blog #${blogId}`);
+            else  alert("Could Not Connect To Server!");
+              
         }) 
         .catch(err => {
             console.log(err);
