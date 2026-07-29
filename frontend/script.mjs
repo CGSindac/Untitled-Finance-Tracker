@@ -52,7 +52,7 @@ fetchData().then(entry => {
         }
     });
 }).catch(err => console.log(err));
-
+initNewBlogForm();
 newBlogBttn.addEventListener('click', initNewBlogForm);
 
 // Event Listeners
@@ -65,8 +65,8 @@ function initNewBlogForm(event) {
     document.getElementById("title").value = "";
     document.getElementById("entry").innerHTML = "";
     document.getElementById("blogId").value = "";
-
-    alert("New Blog Mode");
+    document.getElementById("submit-bttn").style.backgroundColor = "var(--create-color)";
+    document.getElementById("submit-bttn").innerHTML = "Create BLOG";
 }
 function handleBlogCreation(event) {
     event.preventDefault();
@@ -99,6 +99,9 @@ function initUpdateBlogForm(event, blogData) {
     document.getElementById("title").value = blogData.title || "No Title";
     document.getElementById("entry").innerHTML = blogData.entry || "No Entry";
     document.getElementById("blogId").value = blogData.id || "";
+
+    document.getElementById("submit-bttn").style.backgroundColor = "var(--update-color)";
+    document.getElementById("submit-bttn").innerHTML = "Update Blog";
 
 }
 function handleBlogUpdate(event) {

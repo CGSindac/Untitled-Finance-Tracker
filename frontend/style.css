@@ -13,6 +13,9 @@
     --blog-from-bg-color: #2e457d;
 
     --font-color : #252525;
+    --create-color: #0BDA51;
+    --update-color: #FFAC1C;
+    --delete-color: #f44336 ;
 }
 
 
@@ -68,6 +71,11 @@ main{
     background-color: var(--blog-entry-bg-color);
     border-radius: 6px;
 }
+.entry-header {
+    display: flex;
+    justify-content: space-between;
+}
+
 
 .entry-title {
     font-size: 2.5rem;
@@ -81,6 +89,7 @@ main{
 
 .entry-main {
     margin-top: 5px;
+    white-space: pre-wrap;
 }
 
 .form-container{
@@ -162,11 +171,29 @@ button {
     border-radius: 6px;
     box-sizing: border-box;
     padding: 12px;
+
+    font-weight: bolder;
+    background-color:  lightskyblue;
+    text-shadow: 1px 1px 2px #25252558;
+    color: white;
+    text-transform: uppercase;
 }
 
-.entry-header {
-    display: flex;
-    justify-content: space-between;
+.blog-bttn{
+    width: 90%;
+}
+
+#new-blog-bttn{
+    width: 100%;
+    background-color: var(--create-color);
+}
+
+#delete-bttn {
+    background-color: var(--delete-color);
+}
+
+#focus-bttn {
+    background-color: var(--update-color);
 }
 
 
