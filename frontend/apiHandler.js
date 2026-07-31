@@ -80,6 +80,7 @@ async function updateBlog(data) {
         return true; // For this project, responses only returns true if succeeded | Currently studying response bodies
     } catch (err) {
         console.log(err);
+        return false;
     }
 }
 
@@ -104,6 +105,7 @@ async function deleteBlog(blogId) {
         return true; // For this project, responses only returns true if succeeded | Currently studying response bodies
     } catch (err) {
         console.log(err);
+        return false;
     }
 }
 

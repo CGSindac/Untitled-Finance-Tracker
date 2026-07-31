@@ -68,7 +68,7 @@ router.patch('/articles/:id', validateEntry, async (req, res) => {
     // Update
     data[entryIndex] = { ...data[entryIndex], ...body};
 
-    if (UpdateDB(data)) return res.sendStatus(200);
+    if (UpdateDB(data)) return res.status(200).send({mssg: 'OK'});
     else return res.sendStatus(400);
 
     
@@ -94,7 +94,7 @@ router.delete('/articles/:id', async (req, res) => {
     // Update
     data[entryIndex].deleted = true;
 
-    if (UpdateDB(data)) return res.sendStatus(200);
+    if (UpdateDB(data)) return res.status(200).send({mssg: 'OK'});
     else return res.sendStatus(400);
 });
 
