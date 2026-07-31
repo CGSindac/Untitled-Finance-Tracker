@@ -151,7 +151,7 @@ function handleBlogDeletion(blogId){
 
     deleteBlog(blogId)
         .then(res => {
-             if (res) alert(`Deleting Blog #${blogId}`);
+            if (res) alert(`Deleting Blog #${blogId}`);
             else  alert("Could Not Connect To Server!");
               
         }) 
