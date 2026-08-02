@@ -1,22 +1,48 @@
-# ~~Untitled-Finance-Tracker~~
-~~Finance Tracker Project Using Node JS, Express JS, Firebase, [Frontend??], hope to complete this before start of classes.~~
-
 # Untitle-Blog-Site
 Simple Blog site to practice & study backend REST API integration with frontend through Express JS and Javascript
 
-## Thing I will implement (Will/Currently study) [Will Make on Untitled-Finance-Tracker]
-1. DBMS Principles
-2. Backend Design Principle
+## Features
 
-## Information Requirements [Will Make on Untitled-Finance-Tracker]
-1. User Information
-    - Full Name
-    - Password
-    - Display Name
-    - Email (Firebase authentication stuff?? *To Explore*)
-2. User Balance 
-3. Transactions
-4. Transaction Type
-5. Transaction Date
+## Installation and Usage
 
-### Minimal/No AI
+__Pre-requisites:__
+
+1. NodeJS (Recommended v24.17.0)
+2. ExpressJS
+3. Live Server (VS Code)
+
+__Installation:__
+
+1. Clone this repository
+```bash
+git clone [REPOSITORY LINK]
+```
+
+2. Change directory to server directory
+```bash
+cd server
+```
+
+3. Download dependencies
+```bash
+npm install
+```
+
+4. ***Done!***
+
+__Usage:__
+
+1. Run the server
+```bash
+cd server
+```
+```bash
+npm run dev
+```
+
+2. Use <u>Live Server</u> to run frontend.
+
+
+
+
+### NO AI
